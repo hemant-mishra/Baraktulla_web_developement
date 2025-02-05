@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IQAC & AQAR</title>
+    <link rel="shortcut icon" href="image/Barkatullah_University_logo.png" type="image/svg+xml">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        main {
+            margin: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        #pdf-container {
+            margin-top: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IQAC & AQAR</h1>
+    </header>
+    <main>
+        <label for="category-select">Select Category:</label>
+        <select id="category-select">
+            <option value="">--Select Category--</option>
+            <option value="iqac">IQAC</option>
+            <option value="aqar">AQAR</option>
+        </select>
+        
+        <label for="year-select">Select Year:</label>
+        <select id="year-select" disabled>
+            <option value="">--Select Year--</option>
+        </select>
+        
+        <div id="pdf-container">
+            <p>Select a category and year to view the document.</p>
+        </div>
+    </main>
+    <script>
+        const pdfFiles = {
+            iqac: {
+                2025: "pdfs/iqac_2025.pdf",
+                2024: "pdfs/iqac_2024.pdf",
+                2023: "pdfs/iqac_2023.pdf"
+            },
+            aqar: {
+                2019: "pdfs/aqar_2019.pdf",
+                2020: "pdfs/aqar_2020.pdf",
+                2021: "pdfs/aqar_2021.pdf"
+            }
+        };
+
+        document.getElementById("category-select").addEventListener("change", function() {
+            let yearSelect = document.getElementById("year-select");
+            yearSelect.innerHTML = '<option value="">--Select Year--</option>';
+            yearSelect.disabled = this.value === "";
+            
+            if (this.value !== "") {
+                Object.keys(pdfFiles[this.value]).forEach(year => {
+                    let option = document.createElement("option");
+                    option.value = year;
+                    option.textContent = year;
+                    yearSelect.appendChild(option);
+                });
+            }
+        });
+
+        document.getElementById("year-select").addEventListener("change", function() {
+            let category = document.getElementById("category-select").value;
+            let year = this.value;
+            let container = document.getElementById("pdf-container");
+            
+            if (category && year && pdfFiles[category][year]) {
+                container.innerHTML = `<iframe src="${pdfFiles[category][year]}" allowfullscreen></iframe>`;
+            } else {
+                container.innerHTML = "<p>Select a category and year to view the document.</p>";
+            }
+        });
+    </script>
+</body>
+</html>
