@@ -13,7 +13,7 @@
             text-align: center;
         }
         header {
-            background-color: #0073e6;
+            background-color: #E29850;
             color: white;
             padding: 20px;
             font-size: 24px;
@@ -30,8 +30,8 @@
             margin-top: 20px;
         }
         iframe {
-            width: 80%;
-            height: 500px;
+            width: 100%;
+            height: 90vh; /* 90% of the viewport height */
             border: none;
         }
     </style>
@@ -42,14 +42,14 @@
     </header>
     <main>
         <label for="category-select">Select Category:</label>
-        <select id="category-select">
+        <select id="category-select" aria-label="Category Selection">
             <option value="">--Select Category--</option>
             <option value="iqac">IQAC</option>
             <option value="aqar">AQAR</option>
         </select>
         
         <label for="year-select">Select Year:</label>
-        <select id="year-select" disabled>
+        <select id="year-select" aria-label="Year Selection" disabled>
             <option value="">--Select Year--</option>
         </select>
         
@@ -57,27 +57,45 @@
             <p>Select a category and year to view the document.</p>
         </div>
     </main>
+
     <script>
         const pdfFiles = {
             iqac: {
-                2025: "pdfs/iqac_2025.pdf",
-                2024: "pdfs/iqac_2024.pdf",
-                2023: "pdfs/iqac_2023.pdf"
+                "IQAC Notification": "pdfs/IQAC_commitee2023.pdf",
+                // "2024-25": "pdfs/iqac_2025.pdf",
+                // "2023-24": "pdfs/iqac_2024.pdf",
+                // "2022-23": "pdfs/iqac_2023.pdf"
             },
             aqar: {
-                2019: "pdfs/aqar_2019.pdf",
-                2020: "pdfs/aqar_2020.pdf",
-                2021: "pdfs/aqar_2021.pdf"
+                "2020-21": "pdfs/aqar_2021.pdf",
+                "2019-20": "pdfs/aqar_2020.pdf",
+                "2018-19": "pdfs/aqar_2019.pdf",
+                "2017-18": "pdfs/aqar_2018.pdf",
+                "2016-17": "pdfs/aqar_2017.pdf"
             }
         };
 
         document.getElementById("category-select").addEventListener("change", function() {
             let yearSelect = document.getElementById("year-select");
+            let pdfContainer = document.getElementById("pdf-container");
+
+            // Reset year selection and clear the PDF display
             yearSelect.innerHTML = '<option value="">--Select Year--</option>';
+            pdfContainer.innerHTML = "<p>Select a category and year to view the document.</p>";
             yearSelect.disabled = this.value === "";
-            
+
             if (this.value !== "") {
-                Object.keys(pdfFiles[this.value]).forEach(year => {
+                let years = Object.keys(pdfFiles[this.value]);
+
+                // Move "IQAC Notification" to the top
+                if (this.value === "iqac") {
+                    years = years.filter(y => y !== "IQAC Notification");
+                    years.unshift("IQAC Notification");
+                } else {
+                    years.sort((a, b) => b.localeCompare(a)); // Sort AQAR years in descending order
+                }
+
+                years.forEach(year => {
                     let option = document.createElement("option");
                     option.value = year;
                     option.textContent = year;
@@ -90,7 +108,7 @@
             let category = document.getElementById("category-select").value;
             let year = this.value;
             let container = document.getElementById("pdf-container");
-            
+
             if (category && year && pdfFiles[category][year]) {
                 container.innerHTML = `<iframe src="${pdfFiles[category][year]}" allowfullscreen></iframe>`;
             } else {
