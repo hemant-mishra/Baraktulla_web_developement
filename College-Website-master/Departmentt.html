@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Departments - Barkatullah Vishwavidyalaya</title>
+    <link rel="shortcut icon" href="image/Barkatullah_University_logo.png" type="image/png">
     <style>
         /* General Styles */
         * {
@@ -43,13 +44,8 @@
 
         /* Department Section */
         .department-section {
-            padding: 40px 0;
+            padding: 40px 5%;
             background-color: white;
-        }
-
-        .department-section .container {
-            max-width: 1000px;
-            margin: 0 auto;
             text-align: center;
         }
 
@@ -88,20 +84,21 @@
         }
 
         .dropdown-btn:hover {
-            background-color: #E29850;
+            background-color: #d18745;
         }
 
         .dropdown-content {
-            display: auto;
+            display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 200px;
-            max-height: 300px; /* Added max height */
-            overflow-y: auto; /* Enables scrolling */
+            min-width: 220px;
+            max-height: 300px;
+            overflow-y: auto;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 20;
             left: 0;
             padding: 10px;
+            border-radius: 5px;
         }
 
         .dropdown-content a {
@@ -110,26 +107,18 @@
             text-decoration: none;
             display: block;
             font-size: 1.1em;
+            transition: background 0.3s ease;
         }
 
         .dropdown-content a:hover {
             background-color: #ddd;
         }
 
-        /* Dropdown Hover Interaction */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown:hover .dropdown-btn {
-            background-color: #E29850;
-        }
-
         /* Footer Styles */
         footer {
             background-color: #333;
             color: white;
-            padding: 20px 0;
+            padding: 20px 5%;
             text-align: center;
         }
 
@@ -146,6 +135,26 @@
             font-size: 1em;
             margin-bottom: 10px;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+            }
+
+            .dropdown-btn {
+                font-size: 1em;
+                padding: 10px 15px;
+            }
+
+            .dropdown-content {
+                min-width: 180px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -156,15 +165,15 @@
         </div>
     </header>
 
-    <section class="department-section">
-        <div class="container">
+    <main>
+        <section class="department-section">
             <h2>Our Departments</h2>
             <p>Select a department to learn more about its offerings.</p>
 
             <!-- Dropdown Section -->
             <div class="dropdown">
-                <button class="dropdown-btn">Select Department</button>
-                <div class="dropdown-content">
+                <button class="dropdown-btn" id="dropdownBtn">Select Department</button>
+                <div class="dropdown-content" id="dropdownContent">
                     <a href="#">Arts</a>
                     <a href="#">Social Science</a>
                     <a href="#">Science</a>
@@ -181,8 +190,8 @@
             </div>
 
             <p class="additional-info">Explore a diverse range of academic disciplines at Barkatullah Vishwavidyalaya. From engineering to social sciences, we offer comprehensive courses across various faculties.</p>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
@@ -190,5 +199,25 @@
             <p>Contact: +91-755-2517100 | Email: <a href="mailto:info@bubhopal.ac.in">info@bubhopal.ac.in</a></p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownBtn = document.getElementById("dropdownBtn");
+            const dropdownContent = document.getElementById("dropdownContent");
+
+            // Toggle dropdown on button click
+            dropdownBtn.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevents event from bubbling up
+                dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener("click", function (event) {
+                if (!dropdownBtn.contains(event.target) && !dropdownContent.contains(event.target)) {
+                    dropdownContent.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
