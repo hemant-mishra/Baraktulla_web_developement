@@ -62,6 +62,8 @@ This project is a website for **Barkatullah University**, Bhopal, showcasing the
 
 ## Contributors
 - **Hemant Mishra** (Primary Developer)
+- **Jitendra**
+- **Geeks of Gurukul** (Organization)
 
 ## License
 This project is for **educational and informational purposes only**. All rights reserved by Barkatullah University.
