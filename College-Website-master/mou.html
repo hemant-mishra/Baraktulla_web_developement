@@ -26,11 +26,11 @@
         }
         ul {
             list-style-type: none;
-            padding: 0;
+            padding: 0; 
             display:flex;
             flex-wrap:wrap;
             justify-content: center;
-            gap:20px;
+            gap:10px;
         }
         li {
             background: #2b2828;
@@ -51,6 +51,23 @@
             text-decoration: none;
             font-weight: bold;
         }
+        .button-container a {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, #E29850, #C07A3D);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s ease-in-out;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .button-container a:hover {
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 <body>
@@ -59,6 +76,7 @@
     </header>
     <main>
         <h2>List of MOUs</h2>
+        <div class="button-container">
         <ul>
             <li><a href="MOU-ICMR.pdf" target="_blank">MOU ICMR</a></li>
             <li><a href="MOU-AMPRI.pdf" target="_blank">MOU AMPRI</a></li>
@@ -77,6 +95,7 @@
             <li><a href="JIWAJIUNIVERSITY_MOU.pdf" target="_blank">MOU JIWAJI University</a></li>
             <li><a href="InternationalInstitutions_MOU.pdf" target="_blank">MOU International Institutions</a></li>
         </ul>
+    </div>
     </main>
 </body>
 </html>

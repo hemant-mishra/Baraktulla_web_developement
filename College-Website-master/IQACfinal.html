@@ -27,14 +27,30 @@
             padding: 20px;
         }
 
-        header h1 {
-            font-size: 2.5em;
+        nav {
+            background: #C07A3D;
+            padding: 10px;
+            text-align: center;
         }
 
-        header h2 {
-            font-size: 1.5em;
-            margin-top: 10px;
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
             color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #A56941;
+            border-radius: 5px;
         }
 
         section {
@@ -54,29 +70,28 @@
             text-align: center;
         }
 
-        /* Button Styling */
-        .reports-resources .button-container {
+        .button-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
             padding: 10px;
         }
 
-        .reports-resources a {
+        .button-container a {
             display: block;
             text-align: center;
-            text-decoration: none;
-            background-color: #E29850;
+            background: linear-gradient(135deg, #E29850, #C07A3D);
             color: white;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
-            transition: 0.3s;
+            transition: transform 0.2s ease-in-out;
+            text-decoration: none;
             font-size: 16px;
         }
 
-        .reports-resources a:hover {
-            background-color: #C07A3D;
+        .button-container a:hover {
+            transform: scale(1.05);
         }
 
         footer {
@@ -96,6 +111,21 @@
             text-decoration: underline;
         }
 
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+            header h2 {
+                font-size: 1.2em;
+            }
+            .button-container {
+                flex-direction: column;
+            }
+        }
+        a:hover {
+            color: #FFD700;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
