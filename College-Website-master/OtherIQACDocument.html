@@ -19,7 +19,7 @@
         }
         header {
             text-align: center;
-            background-color: #ff9933;
+            background-color: #E29850;
             color: white;
             padding: 15px;
             font-size: 24px;
@@ -29,7 +29,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             padding: 20px;
-            background-color: #ff9933;
+            background-color: #E29850;
             border-radius: 10px;
         }
         .document-list a {
@@ -44,7 +44,7 @@
             transition: background 0.3s;
         }
         .document-list a:hover {
-            background: #ff6600;
+            background: #E29850;
             color: white;
         }
         .document-viewer {
@@ -60,11 +60,48 @@
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #ff9933;
+            background-color: #E29850;
             color: white;
             margin-top: 20px;
         }
-    </style>
+        .dropdown-container {
+            display: block;
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .dropdown-container:hover {
+            background: #E29850;
+            color: white;
+        }
+
+        .styled-dropdown {
+            width: 100%;
+            background: transparent;
+            border: none;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            cursor: pointer;
+            text-align: center;
+            outline: none;
+        }
+
+        /* Remove default dropdown arrow */
+        .styled-dropdown::-ms-expand {
+            display: none;
+        }
+
+        .styled-dropdown option {
+            color: black;
+        }
+
+            </style>
 </head>
 <body>
     <div class="container">
@@ -73,11 +110,16 @@
         </header>
         <main>
             <div class="document-list">
-                <!-- <a href="documents/IIQA.pdf" target="viewer">IIQA</a>
-                <a href="documents/AISHE.pdf" target="viewer">AISHE</a>
-                <a href="documents/NIRF.pdf" target="viewer">NIRF</a> -->
-                <a href="documents/UGC_Act.pdf" target="viewer">UGC Act</a>
-                <a href="documents/IQAC_Activities.pdf" target="viewer">IQAC Activities</a>
+
+                <!-- <a href="documents/UGC_Act.pdf" target="viewer">UGC Act</a> -->
+                <a class="dropdown-container">
+                    <select class="styled-dropdown" onchange="if(this.value) window.open(this.value, 'viewer');">
+                        <option selected disabled>UGC Act</option>
+                        <option value="https://www.bubhopal.ac.in/Site/Upload/Menu/1600_1711_ACT-2B_State%20University%202B%20of%20UGC.pdf">ACT 2B</option>
+                        <option value="https://www.bubhopal.ac.in/Site/Upload/Menu/1600_1711_ACT-2F_State%20Universities%202%20f%20of%20UGC%20Act.pdf">ACT 2F</option>
+                    </select>
+                </a> 
+                <a href="https://www.bubhopal.ac.in/Site/Upload/Menu/1600_0_-IQAC-activities-_IQAC-2.pdf" target="viewer">IQAC Activities</a>
 
                 <a href="http://www.bubhopal.ac.in/Site/Upload/Menu/1600_1637_CODE-OF-PROFESSIONAL-ETHICS_CODE%20OF%20PROFESSIONAL%20ETHICS.pdf" target="viewer">Code of Professional Ethics</a>
                 <a href="https://drive.google.com/drive/folders/1SgXcxnad4cSFYUGcjHHoUET50X1PO0YP" target="_blank">BOS Minutes</a>
