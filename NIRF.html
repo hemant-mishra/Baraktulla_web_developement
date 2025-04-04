@@ -68,9 +68,9 @@
             let pdfContainer = document.getElementById('pdf-container');
             let pdfViewer = document.getElementById('pdf-viewer');
             let pdfMessage = document.getElementById('pdf-message');
-           
+            
             if (this.value) {
-                pdfViewer.src = this.value; 
+                pdfViewer.src = this.value; // Assuming PDFs are stored in 'pdfs/' directory
                 pdfViewer.hidden = false;
                 pdfContainer.style.display = 'block';
                 pdfMessage.style.display = 'none';
